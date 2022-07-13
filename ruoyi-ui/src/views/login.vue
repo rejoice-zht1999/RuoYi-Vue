@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">若依后台管理系统</h3>
+      <h3 class="title">梧高凤必至 花香蝶自来</h3>
       <el-form-item prop="username">
         <el-input
           v-model="loginForm.username"
@@ -23,7 +23,7 @@
           <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
-      <el-form-item prop="code" v-if="captchaEnabled">
+      <el-form-item prop="code" v-if="captchaOnOff">
         <el-input
           v-model="loginForm.code"
           auto-complete="off"
@@ -56,7 +56,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2022 ruoyi.vip All Rights Reserved.</span>
+      <span>富强 民主 文明 和谐 自由 平等 公正 法治 爱国 敬业 诚信 友善</span>
     </div>
   </div>
 </template>
@@ -89,7 +89,7 @@ export default {
       },
       loading: false,
       // 验证码开关
-      captchaEnabled: true,
+      captchaOnOff: true,
       // 注册开关
       register: false,
       redirect: undefined
@@ -110,8 +110,8 @@ export default {
   methods: {
     getCode() {
       getCodeImg().then(res => {
-        this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
-        if (this.captchaEnabled) {
+        this.captchaOnOff = res.captchaOnOff === undefined ? true : res.captchaOnOff;
+        if (this.captchaOnOff) {
           this.codeUrl = "data:image/gif;base64," + res.img;
           this.loginForm.uuid = res.uuid;
         }
@@ -144,7 +144,7 @@ export default {
             this.$router.push({ path: this.redirect || "/" }).catch(()=>{});
           }).catch(() => {
             this.loading = false;
-            if (this.captchaEnabled) {
+            if (this.captchaOnOff) {
               this.getCode();
             }
           });
@@ -161,7 +161,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("../assets/images/login-background.jpg");
+  background-image: url("../assets/images/login-background2.png");
   background-size: cover;
 }
 .title {
