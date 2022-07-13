@@ -61,6 +61,19 @@
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
+        <!-- 主体档案-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-ztdagl</artifactId>
+        </dependency>
+
+        <!-- lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
