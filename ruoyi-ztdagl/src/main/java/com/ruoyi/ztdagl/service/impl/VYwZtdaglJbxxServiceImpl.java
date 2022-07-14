@@ -19,8 +19,4 @@ import java.util.List;
 @Service
 public class VYwZtdaglJbxxServiceImpl extends ServiceImpl<VYwZtdaglJbxxMapper, VYwZtdaglJbxx> implements IVYwZtdaglJbxxService {
 
-    @Override
-    public List<VYwZtdaglJbxx> queryList(LambdaQueryWrapper<VYwZtdaglJbxx> lqw) {
-        return this.getBaseMapper().queryList(lqw);
-    }
 }

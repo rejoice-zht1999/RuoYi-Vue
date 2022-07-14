@@ -51,28 +51,16 @@ public class VYwZtdaglJbxx implements Serializable {
     private String zttype;
 
     /**
-     * 药店类型 连锁、总部、单体
-     */
-    @Excel(name = "药店类型")
-    private String ydType;
-
-    /**
-     * 药店风险等级 ABCD
-     */
-    @Excel(name = "药店风险等级")
-    private String riskLevel;
-
-    /**
      * 主体联络人
      */
     @Excel(name = "主体联络人")
-    private String llr;
+    private String ztllr;
 
     /**
      * 主体联络人电话
      */
     @Excel(name = "主体联络人电话")
-    private String llrTel;
+    private String ztllrtel;
 
     /**
      * 监管单位
@@ -81,22 +69,10 @@ public class VYwZtdaglJbxx implements Serializable {
     private String jgorg;
 
     /**
-     * 监管单位
+     * 监管所
      */
-    @Excel(name = "监管单位")
-    private String jgorgName;
-
-    /**
-     * 监管所或监管部门
-     */
-    @Excel(name = "监管所或监管部门")
-    private String jgs;
-
-    /**
-     * 监管所或监管部门
-     */
-    @Excel(name = "监管所或监管部门")
-    private String jgsName;
+    @Excel(name = "监管所")
+    private String jggss;
 
     /**
      * 监管网格
@@ -105,10 +81,10 @@ public class VYwZtdaglJbxx implements Serializable {
     private String jggrid;
 
     /**
-     * 网格员
+     * 药店类型 连锁、总部、单体
      */
-    @Excel(name = "网格员")
-    private String jgoperName;
+    @Excel(name = "药店类型")
+    private String ydType;
 
     /**
      * 坐标经度
@@ -129,15 +105,11 @@ public class VYwZtdaglJbxx implements Serializable {
     private String locstatus;
 
     /**
-     * 地图显示等级，等级10-17
-     */
-    private Long mapGrade;
-
-    /**
      * 药店状态0正常营业 2停业
      */
     @Excel(name = "药店状态0正常营业 2停业")
     private String ydStatus;
+
 
     /**
      * 创建时间
@@ -164,10 +136,10 @@ public class VYwZtdaglJbxx implements Serializable {
     private String updateBy;
 
     /**
-     * 注册号
+     * 监管网格id
      */
-    @Excel(name = "注册号")
-    private String regno;
+    @Excel(name = "监管网格id")
+    private String licno;
 
     /**
      * 统一社会信用代码
@@ -176,10 +148,16 @@ public class VYwZtdaglJbxx implements Serializable {
     private String uniscid;
 
     /**
-     * 名称
+     * 主体名称
      */
-    @Excel(name = "名称")
+    @Excel(name = "主体名称")
     private String entname;
+
+    /**
+     * 注册地址
+     */
+    @Excel(name = "注册地址")
+    private String zcDom;
 
     /**
      * 法定代表人/负责人
@@ -188,97 +166,28 @@ public class VYwZtdaglJbxx implements Serializable {
     private String lerep;
 
     /**
-     * 企业类别
+     * 企业负责人
      */
-    @Excel(name = "企业类别")
-    private String entcat;
+    @Excel(name = "企业负责人")
+    private String fzrQy;
 
     /**
-     * 企业类别名称
+     * 质量负责人
      */
-    @Excel(name = "企业类别名称")
-    private String entcatName;
+    @Excel(name = "质量负责人")
+    private String fzrZl;
 
     /**
-     * 企业类型
+     * 仓库地址
      */
-    @Excel(name = "企业类型")
-    private String enttype;
+    @Excel(name = "仓库地址")
+    private String ckDom;
 
     /**
-     * 企业类型名称
+     * 经营方式
      */
-    @Excel(name = "企业类型名称")
-    private String enttypeName;
-
-    /**
-     * 行业门类
-     */
-    @Excel(name = "行业门类")
-    private String industryphy;
-
-    /**
-     * 行业门类名称
-     */
-    @Excel(name = "行业门类名称")
-    private String industryphyName;
-
-    /**
-     * 行业代码
-     */
-    @Excel(name = "行业代码")
-    private String industryco;
-
-    /**
-     * 行业代码名称
-     */
-    @Excel(name = "行业代码名称")
-    private String industrycoName;
-
-    /**
-     * 成立日期
-     */
-    @Excel(name = "成立日期", width = 30, dateFormat = "yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date estdate;
-
-    /**
-     * 状态
-     */
-    @Excel(name = "状态")
-    private BigDecimal entstatus;
-
-    /**
-     * 企业状态名称
-     */
-    @Excel(name = "企业状态名称")
-    private String entstatusName;
-
-    /**
-     * 经营期限起
-     */
-    @Excel(name = "经营期限起", width = 30, dateFormat = "yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date opfrom;
-
-    /**
-     * 经营期限止
-     */
-    @Excel(name = "经营期限止", width = 30, dateFormat = "yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date opto;
-
-    /**
-     * 地址
-     */
-    @Excel(name = "地址")
-    private String dom;
-
-    /**
-     * 法定代表人证件号码
-     */
-    @Excel(name = "法定代表人证件号码")
-    private String cerno;
+    @Excel(name = "经营方式")
+    private String jyfs;
 
     /**
      * 经营范围
@@ -287,21 +196,93 @@ public class VYwZtdaglJbxx implements Serializable {
     private String busscope;
 
     /**
+     * 发证机关编码
+     */
+    @Excel(name = "发证机关编码")
+    private String licanth;
+
+    /**
+     * 发证机关名称
+     */
+    @Excel(name = "发证机关名称")
+    private String licanthName;
+
+    /**
+     * 发证日期
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")//json转实体类
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")//实体类转json
+    @Excel(name = "发证日期")
+    private Date valfrom;
+
+    /**
+     * 有效期至
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")//json转实体类
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")//实体类转json
+    @Excel(name = "有效期至")
+    private Date valto;
+
+    /**
+     * 证书状态
+     */
+    @Excel(name = "证书状态")
+    private String licstate;
+
+    /**
+     * 组织机构代码
+     */
+    @Excel(name = "组织机构代码")
+    private String orgcode;
+
+    /**
+     * 行政区划
+     */
+    @Excel(name = "行政区划")
+    private String xzqhCode;
+
+    /**
+     * 行政区划名称
+     */
+    @Excel(name = "行政区划名称")
+    private String xzqhName;
+
+    /**
+     * 经营类别编号
+     */
+    @Excel(name = "经营类别编号")
+    private String jyTypeCode;
+
+    /**
+     * 经营类别名称
+     */
+    @Excel(name = "经营类别名称")
+    private String jyTypeName;
+
+    /**
+     * 证照类别
+     */
+    @Excel(name = "证照类别")
+    private String licType;
+
+    /**
+     * 企业类别
+     */
+    @Excel(name = "企业类别")
+    private String qytype;
+
+    /**
      * 时间戳
      */
-    @Excel(name = "时间戳", width = 30, dateFormat = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")//json转实体类
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")//实体类转json
-    private Date sExtTimestamp;
+    @Excel(name = "时间戳")
+    private Date gxDate;
 
     /**
-     * 对接视频
+     * 身份证号码
      */
-    @Excel(name = "对接视频")
-    private String indexCode;
+    @Excel(name = "身份证号码")
+    private String cerno;
 
-    /**
-     * 距离
-     */
-    @TableField(exist = false)
-    private String distance;
 }

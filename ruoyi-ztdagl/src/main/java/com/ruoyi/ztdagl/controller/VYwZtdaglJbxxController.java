@@ -31,7 +31,6 @@ public class VYwZtdaglJbxxController extends BaseController {
      */
     @GetMapping("/list")
     public TableDataInfo list(VYwZtdaglJbxx vYwZtdaglJbxx) {
-        System.out.println(vYwZtdaglJbxx);
         LambdaQueryWrapper<VYwZtdaglJbxx> lqw = new LambdaQueryWrapper<VYwZtdaglJbxx>();
         if (StringUtils.isNotBlank(vYwZtdaglJbxx.getUniscid())) {
             lqw.like(VYwZtdaglJbxx::getUniscid, vYwZtdaglJbxx.getUniscid());

@@ -28,13 +28,16 @@
     <el-table v-loading="loading" :data="vztxxList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="药店名称" align="center" prop="entname"/>
-      <el-table-column label="社会信用代码" align="center" prop="uniscid" width="180"/>
-      <el-table-column label="负责人" align="center" prop="llr" width="80"/>
-      <el-table-column label="监管单位" align="center" prop="jgorgName" width="180"/>
-      <el-table-column label="监管所" align="center" prop="jgsName" width="120"/>
-      <el-table-column label="成立日期" align="center" prop="estdate" width="100">
+      <el-table-column label="社会信用代码" align="center" prop="uniscid"/>
+      <el-table-column label="负责人" align="center" prop="lerep"/>
+      <el-table-column label="发证日期" align="center" prop="valfrom">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.estdate, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.valfrom, '{y}-{m}-{d}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="有效期至" align="center" prop="valto">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.valto, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
     </el-table>

@@ -15,5 +15,4 @@ import java.util.List;
  */
 public interface IVYwZtdaglJbxxService extends IService<VYwZtdaglJbxx> {
 
-    List<VYwZtdaglJbxx> queryList(LambdaQueryWrapper<VYwZtdaglJbxx> lqw);
 }
