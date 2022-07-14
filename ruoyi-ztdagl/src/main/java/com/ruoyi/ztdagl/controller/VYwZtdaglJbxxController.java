@@ -38,6 +38,7 @@ public class VYwZtdaglJbxxController extends BaseController {
         if (StringUtils.isNotBlank(vYwZtdaglJbxx.getEntname())) {
             lqw.like(VYwZtdaglJbxx::getEntname, vYwZtdaglJbxx.getEntname());
         }
+        lqw.orderByAsc(VYwZtdaglJbxx::getValto);
         startPage();
         List<VYwZtdaglJbxx> list = iVYwZtdaglJbxxService.list(lqw);
         return getDataTable(list);

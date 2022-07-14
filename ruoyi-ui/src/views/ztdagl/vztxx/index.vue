@@ -1,19 +1,19 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="100px">
-      <el-form-item label="社会信用代码" prop="uniscid">
+      <el-form-item label="药店名称" prop="entname">
         <el-input
-          v-model="queryParams.uniscid"
-          placeholder="请输入社会信用代码"
+          v-model="queryParams.entname"
+          placeholder="请输入药店名称"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="药店名称" prop="entname">
+      <el-form-item label="社会信用代码" prop="uniscid">
         <el-input
-          v-model="queryParams.entname"
-          placeholder="请输入药店名称"
+          v-model="queryParams.uniscid"
+          placeholder="请输入社会信用代码"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
@@ -27,6 +27,14 @@
 
     <el-table v-loading="loading" :data="vztxxList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
+      <el-table-column label="亮灯" align="center" prop="recid" :width="50">
+        <template slot-scope="scope">
+          <div class="danger-light" v-if="valtoFormat(scope.row.valto) <= 0"></div>
+          <div class="warning-light"
+               v-if="0<valtoFormat(scope.row.valto) && valtoFormat(scope.row.valto)<overdual"></div>
+          <div class="success-light" v-if="overdual <= valtoFormat(scope.row.valto)"></div>
+        </template>
+      </el-table-column>
       <el-table-column label="药店名称" align="center" prop="entname"/>
       <el-table-column label="社会信用代码" align="center" prop="uniscid"/>
       <el-table-column label="负责人" align="center" prop="lerep"/>
@@ -85,6 +93,7 @@ export default {
         uniscid: null,
         entname: null,
       },
+      overdual: 30,
     };
   },
   created() {
@@ -116,38 +125,48 @@ export default {
       this.single = selection.length !== 1
       this.multiple = !selection.length
     },
+    /**
+     * 计算是否超期
+     */
+    valtoFormat(time) {
+      const valTo = this.parseTime(time, '{y}-{m}-{d}');//有效期
+      if (valTo != null) {
+        let endDates = valTo.split("-");
+        let endDate = new Date(endDates[0], endDates[1] - 1, endDates[2]);
+        let startDate = new Date();
+        let diff = parseInt((endDate - startDate) / 1000 / 60 / 60 / 24);
+        return diff;
+      }
+      return -1;
+    },
   }
 };
 </script>
 <style scoped>
-.qrcode /deep/ .el-dialog__body {
-  padding: 15px 30px;
-}
+  .danger-light {
+    background: url("../../../assets/images/jurassic3.gif") no-repeat center left;
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    margin: 4px auto auto auto;
+    border-radius: 50%;
+  }
 
-.bm-view {
-  width: 100%;
-  height: 400px;
-}
+  .warning-light {
+    background-image: url("../../../assets/images/jurassic2.gif");
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    margin: 4px auto auto auto;
+    border-radius: 50%;
+  }
 
-/deep/ .elTable th {
-  padding: 6px 0 !important;
-}
-
-/deep/ .elTable td {
-  padding: 5px 0 !important;
-}
-
-/deep/ .el-form-item {
-  margin-bottom: 10px;
-}
-
-/deep/ .anchorBL {
-  display: none;
-}
-
-.map-ztxx {
-  width: calc(100% - 15px);
-  margin-left: 15px;
-  line-height: 30px;
-}
+  .success-light {
+    background-image: url("../../../assets/images/jurassic1.gif");
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    margin: 4px auto auto auto;
+    border-radius: 50%;
+  }
 </style>
