@@ -1,7 +1,7 @@
 <template>
   <div class="app-container home">
     <el-row :gutter="20">
-      <el-col :sm="24" :lg="12" style="padding-left: 20px">
+      <el-col :span="18">
         <h2>欢迎来到张子测试系统</h2>
         <p>
           这一款后台管理系统就是自己为了学习公司用到的技术开发使用，后续会慢慢的补充一些功能，加油吧张子
@@ -13,12 +13,20 @@
             icon="el-icon-search"
             plain
             @click="goTarget('https://www.baidu.com')"
-            >百度</el-button
+          >百度
+          </el-button
           >
         </p>
       </el-col>
+
+      <!--右侧-->
+      <el-col :span="6">
+
+
+      </el-col>
+
     </el-row>
-    <el-divider />
+    <el-divider/>
   </div>
 </template>
 
@@ -47,12 +55,14 @@ export default {
     font-size: 17.5px;
     border-left: 5px solid #eee;
   }
+
   hr {
     margin-top: 20px;
     margin-bottom: 20px;
     border: 0;
     border-top: 1px solid #eee;
   }
+
   .col-item {
     margin-bottom: 20px;
   }

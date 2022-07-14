@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.ztdagl.mapper.YwYwzskMapper">
+    
+    <resultMap type="YwYwzsk" id="YwYwzskResult">
+        <result property="recid"    column="RECID"    />
+        <result property="title"    column="TITLE"    />
+        <result property="content"    column="CONTENT"    />
+        <result property="releaseTime"    column="RELEASE_TIME"    />
+        <result property="isRelease"    column="IS_RELEASE"    />
+        <result property="attachmentId"    column="ATTACHMENT_ID"    />
+        <result property="deptCode"    column="DEPT_CODE"    />
+        <result property="deptLevel"    column="DEPT_LEVEL"    />
+        <result property="remark"    column="REMARK"    />
+        <result property="createTime"    column="CREATE_TIME"    />
+        <result property="createBy"    column="CREATE_BY"    />
+        <result property="updateTime"    column="UPDATE_TIME"    />
+        <result property="updateBy"    column="UPDATE_BY"    />
+    </resultMap>
+
+    <sql id="selectYwYwzskVo">
+        select RECID, TITLE, CONTENT, RELEASE_TIME, IS_RELEASE, ATTACHMENT_ID, DEPT_CODE, DEPT_LEVEL, REMARK, CREATE_TIME, CREATE_BY, UPDATE_TIME, UPDATE_BY from yw_ywzsk
+    </sql>
+
+    <select id="selectYwYwzskList" parameterType="YwYwzsk" resultMap="YwYwzskResult">
+        <include refid="selectYwYwzskVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and TITLE = #{title}</if>
+            <if test="content != null  and content != ''"> and CONTENT = #{content}</if>
+            <if test="releaseTime != null "> and RELEASE_TIME = #{releaseTime}</if>
+            <if test="isRelease != null  and isRelease != ''"> and IS_RELEASE = #{isRelease}</if>
+            <if test="attachmentId != null  and attachmentId != ''"> and ATTACHMENT_ID = #{attachmentId}</if>
+            <if test="deptCode != null  and deptCode != ''"> and DEPT_CODE = #{deptCode}</if>
+            <if test="deptLevel != null  and deptLevel != ''"> and DEPT_LEVEL = #{deptLevel}</if>
+            <if test="remark != null  and remark != ''"> and REMARK = #{remark}</if>
+            <if test="createTime != null "> and CREATE_TIME = #{createTime}</if>
+            <if test="createBy != null  and createBy != ''"> and CREATE_BY = #{createBy}</if>
+            <if test="updateTime != null "> and UPDATE_TIME = #{updateTime}</if>
+            <if test="updateBy != null  and updateBy != ''"> and UPDATE_BY = #{updateBy}</if>
+        </where>
+    </select>
+    
+    <select id="selectYwYwzskByRecid" parameterType="String" resultMap="YwYwzskResult">
+        <include refid="selectYwYwzskVo"/>
+        where RECID = #{recid}
+    </select>
+        
+    <insert id="insertYwYwzsk" parameterType="YwYwzsk">
+        insert into yw_ywzsk
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="recid != null">RECID,</if>
+            <if test="title != null and title != ''">TITLE,</if>
+            <if test="content != null">CONTENT,</if>
+            <if test="releaseTime != null">RELEASE_TIME,</if>
+            <if test="isRelease != null">IS_RELEASE,</if>
+            <if test="attachmentId != null">ATTACHMENT_ID,</if>
+            <if test="deptCode != null">DEPT_CODE,</if>
+            <if test="deptLevel != null">DEPT_LEVEL,</if>
+            <if test="remark != null">REMARK,</if>
+            <if test="createTime != null">CREATE_TIME,</if>
+            <if test="createBy != null">CREATE_BY,</if>
+            <if test="updateTime != null">UPDATE_TIME,</if>
+            <if test="updateBy != null">UPDATE_BY,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="recid != null">#{recid},</if>
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="content != null">#{content},</if>
+            <if test="releaseTime != null">#{releaseTime},</if>
+            <if test="isRelease != null">#{isRelease},</if>
+            <if test="attachmentId != null">#{attachmentId},</if>
+            <if test="deptCode != null">#{deptCode},</if>
+            <if test="deptLevel != null">#{deptLevel},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateYwYwzsk" parameterType="YwYwzsk">
+        update yw_ywzsk
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null and title != ''">TITLE = #{title},</if>
+            <if test="content != null">CONTENT = #{content},</if>
+            <if test="releaseTime != null">RELEASE_TIME = #{releaseTime},</if>
+            <if test="isRelease != null">IS_RELEASE = #{isRelease},</if>
+            <if test="attachmentId != null">ATTACHMENT_ID = #{attachmentId},</if>
+            <if test="deptCode != null">DEPT_CODE = #{deptCode},</if>
+            <if test="deptLevel != null">DEPT_LEVEL = #{deptLevel},</if>
+            <if test="remark != null">REMARK = #{remark},</if>
+            <if test="createTime != null">CREATE_TIME = #{createTime},</if>
+            <if test="createBy != null">CREATE_BY = #{createBy},</if>
+            <if test="updateTime != null">UPDATE_TIME = #{updateTime},</if>
+            <if test="updateBy != null">UPDATE_BY = #{updateBy},</if>
+        </trim>
+        where RECID = #{recid}
+    </update>
+
+    <delete id="deleteYwYwzskByRecid" parameterType="String">
+        delete from yw_ywzsk where RECID = #{recid}
+    </delete>
+
+    <delete id="deleteYwYwzskByRecids" parameterType="String">
+        delete from yw_ywzsk where RECID in 
+        <foreach item="recid" collection="array" open="(" separator="," close=")">
+            #{recid}
+        </foreach>
+    </delete>
+</mapper>
