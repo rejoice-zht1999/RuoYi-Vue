@@ -18,12 +18,14 @@
         </el-date-picker>
       </el-form-item>
       <el-form-item label="是否发布" prop="isRelease">
-        <el-input
-          v-model="queryParams.isRelease"
-          placeholder="请输入是否发布：1是，2否"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+        <el-select v-model="queryParams.isRelease" placeholder="是否发布" clearable>
+          <el-option
+            v-for="dict in dict.type.sys_yes_no"
+            :key="dict.value"
+            :label="dict.label"
+            :value="dict.value"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -86,7 +88,11 @@
           <span>{{ parseTime(scope.row.releaseTime, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="是否发布" align="center" prop="isRelease" />
+      <el-table-column prop="isRelease" label="是否发布" align="center" width="100">
+        <template slot-scope="scope">
+          <dict-tag :options="dict.type.sys_yes_no" :value="scope.row.isRelease"/>
+        </template>
+      </el-table-column>
       <el-table-column label="单位机关" align="center" prop="deptCode" />
       <el-table-column label="单位级别" align="center" prop="deptLevel" />
       <el-table-column label="备注" align="center" prop="remark" />
@@ -135,8 +141,14 @@
             placeholder="请选择发布时间">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="是否发布" prop="isRelease">
-          <el-input v-model="form.isRelease" placeholder="请输入是否发布：1是，2否" />
+        <el-form-item label="是否发布">
+          <el-radio-group v-model="form.isRelease">
+            <el-radio
+              v-for="dict in dict.type.sys_yes_no"
+              :key="dict.value"
+              :label="dict.value"
+            >{{dict.label}}</el-radio>
+          </el-radio-group>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -152,6 +164,7 @@ import { listYwzsk, getYwzsk, delYwzsk, addYwzsk, updateYwzsk } from "@/api/ztda
 
 export default {
   name: "Ywzsk",
+  dicts: ['sys_yes_no'],
   data() {
     return {
       // 遮罩层
